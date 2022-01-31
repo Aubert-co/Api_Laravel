@@ -13,8 +13,11 @@ class CreateModelPersonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_persons', function (Blueprint $table) {
+        Schema::create('persons_app', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('age');
+            $table->string('pet');
             $table->timestamps();
         });
     }
