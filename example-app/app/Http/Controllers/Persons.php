@@ -28,40 +28,63 @@ class Persons extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
         //
-
-        $Persons = new ModelPersons();
-
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function find($name,$value){
         $Persons = $this->objPersons;
-        $values = dd($Persons::all()->where($name,$value));
-
-        return $values;
+        $nameValue = $request['name'];
+        $ageValue = $request['age'];
+        $petValue = $request['pet'];
+        $Persons::create([
+            "name"=>$nameValue,
+            "pet"=>$petValue,
+            "age"=>$ageValue
+        ]);
+        $Persons->save();
+        return view('index',compact('values'));
     }
-    public function update(Request $request, $id)
+
+
+    public function find($value)
     {
         $Persons = $this->objPersons;
-        $searchValue = $request->input('name');
-     //   $values = dd($Persons::all()->where('pet',$searchValue));
-        return  $searchValue;
+        $valuesDB = "$value%";
+
+        $values = $Persons::whereRaw('pet like ?  or name like ?  or age like ? ',[$valuesDB,$valuesDB,$valuesDB])->get();
+        return view('index',compact('values'));
+    }
+    public function update(Request $request,)
+    {
+        $Persons = $this->objPersons;
+        $nameValue = $request['name'];
+        $ageValue = $request['age'];
+        $petValue = $request['pet'];
+        $ids = $request['id'];
+        $Persons::all()->where('id',$ids)
+        ->update([
+            'name'=>$nameValue,
+            'age'=>$ageValue,
+            'pet'=>$petValue
+        ]);
+        return ;
     }
 
 
-    public function destroy($id)
+    public function destroyMany(Request $request)
+    {
+        $Persons = $this->objPersons;
+        $ids = $request['ids'];
+        $Persons::destroy( collect( $ids ) );
+
+        $values = $Persons::all();
+
+        return view('index',compact('values'));
+    }
+    public function destroyOne($id)
     {
         $Persons = $this->objPersons;
 
-        $Persons::destroy( collect([$id]) );
+        $Persons::destroy( $id );
 
         $values = $Persons::all();
 
