@@ -44,11 +44,12 @@
             </div>
         </div>
     </main>
-    <script type="module" >
-        import check_all from './public/test'
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script >
 
-        check_all()
-        var check_allCheckbox = document.querySelector("#check_allCheckbox")
+
+
+        var check_allCheckbox =$("#check_allCheckbox")
         var checkInputs = document.querySelectorAll('#check')
         var values = new Map()
         var checkbox_lenght = checkInputs.length
@@ -78,7 +79,23 @@
          */
 
 
+        function check_all(checked){
+    console.log('here')
+    if(checked){
 
+        checkInputs.forEach((val)=>{
+            val.checked = true
+            const ids = val.value
+            values.set(`CheckBoxValue=${ids}`,ids)
+        })
+       return selecionado = true
+    }
+    checkInputs.forEach((val)=>{
+            val.checked = false
+        })
+        values.clear()
+        selecionado = false
+}
 
         function Delete(id){
             const data = values.values()
@@ -94,13 +111,9 @@
             })
             .then((data)=>data.text())
                 .then((datas)=>{
-                    div.innerHTML = datas
+
                 })
-                .finally(()=>{
-                    addEventListener('load',()=>{
-                        console.log('carregou')
-                    })
-                })
+
                 .catch((err)=>{
                     console.log('err',err)
                 })
