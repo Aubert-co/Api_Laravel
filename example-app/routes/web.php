@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[Persons::class,'index']);
 
 
-Route::get('/find/{name}/{values}',[Persons::class,'find'])->where(['name'=>'pet','id','name']);
+Route::get('/find/{values}',[Persons::class,'find'])->where(['name'=>'pet','id','name']);
 
 
-Route::delete('/persons/{id}',[Persons::class,'destroy']);
+Route::delete('/deletemany',[Persons::class,'destroyMany']);
 
+Route::delete('/deleteone/{id}',[Persons::class,'destroyOne']);
