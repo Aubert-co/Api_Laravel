@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelPersons;
 use Illuminate\Http\Request;
 
 class Persons extends Controller
 {
+    private $objPersons;
+    public function __construct()
+    {
+        $this->objPersons = new ModelPersons();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,72 +20,51 @@ class Persons extends Controller
      */
     public function index()
     {
-        return view(view:'index');
+        $Persons = $this->objPersons;
+        $values = $Persons::all();
+
+        return view('index',compact('values'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
+
+        $Persons = new ModelPersons();
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function find($name,$value){
+        $Persons = $this->objPersons;
+        $values = dd($Persons::all()->where($name,$value));
+
+        return $values;
+    }
     public function update(Request $request, $id)
     {
-        //
+        $Persons = $this->objPersons;
+        $searchValue = $request->input('name');
+     //   $values = dd($Persons::all()->where('pet',$searchValue));
+        return  $searchValue;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $Persons = $this->objPersons;
+
+        $Persons::destroy( collect([$id]) );
+
+        $values = $Persons::all();
+
+        return view('index',compact('values'));
     }
 }
