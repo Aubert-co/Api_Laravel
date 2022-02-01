@@ -13,7 +13,7 @@ class CreateModelPersonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('persons_app', function (Blueprint $table) {
+        Schema::create('persons_laravel', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('age');
@@ -29,6 +29,6 @@ class CreateModelPersonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_persons');
+        Schema::dropIfExists('persons_laravel');
     }
 }
