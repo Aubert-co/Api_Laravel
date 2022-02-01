@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelPersons extends Model
 {
-    use HasFactory;
+  protected $table = 'persons_laravel';
 }
