@@ -1,0 +1,174 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+main{
+    height: 100vh;
+    display: flex;
+}
+.add ,.create ,.markselect,.itens_selectAll,.search_persons ,.flex{
+    display: flex;
+}
+.flex{
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 90%;
+}
+
+.table{
+    height: 50%;
+    width: 50%;
+}
+
+table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+table td , th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover{background-color: #ddd;}
+
+table th{
+    padding-top:12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #FF6F6F;
+    color: white;
+}
+/*parte de busca em cima da parte de criação*/
+
+.search_persons{
+    width: 100%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+
+}
+.search_persons input{
+    width: 10%;
+    height: 20px;
+    text-align: center;
+
+}
+.createHide{
+   width: 100%;
+   justify-content: center;
+   text-align: center;
+}
+/*parte de baixo da table onde fica a parte de selecionar checkboxs*/
+.itens_selectAll{
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.markselect{
+
+    width: 20%;
+    height: 100%;
+
+}
+.btnDelAll ,.editAll{
+    background-color: #4B91F7;
+    color: #f2f2f2;
+    border-radius: 6px;
+    margin-left: 5px;
+}
+/*div de criação*/
+
+
+.add input{
+    height: 60%;
+    text-align: center;
+}
+/*campoes de create*/
+#name,#pet,#confirmCreate,#cancelCreate,#age{
+    width: 50%;
+    margin: 1%;
+}
+input{
+    border: 1px solid ;
+    outline: none;
+}
+i,button,input[type="checkbox"]{
+    cursor: pointer;
+}
+input[type="text"]{
+    border-radius: 6px;
+    border: 1px solid #4B91F7;
+}
+
+/*estilos de bottons*/
+.button-10{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    height: 60%;
+
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    text-transform: capitalize;
+}
+.button-10:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+/*bottoes de delete edit search e add*/
+#edit_icons{
+    color: #FBED29;
+}
+#delete_icons{
+    color: #FF6F6F;
+}
+#search_icons{
+    color: #4B91F7;
+}
+#showCreateItem{
+    color: #367AF6;
+}
+
+/*parte de edição do update */
+.edition{
+    display: flex;
+    width: 5%;
+
+    justify-content: center;
+    align-items: center;
+
+}
+.itensEdition{
+    display: flex;
+    flex-direction: column;
+}
+.itensEdition input{
+    margin:5px 0 5px 0;
+    text-align: center;
+}
+.itensEdition button{
+    margin-top:5px ;
+}
+
+/*controle de logs*/
+.logs{
+    color: #fff;
+    background-color: red;
+    text-transform: capitalize;
+}
