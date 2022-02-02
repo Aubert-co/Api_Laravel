@@ -23,8 +23,7 @@ class Persons extends Controller
         $Persons = $this->objPersons;
         $values = $Persons::all();
 
-        return view('index',compact('values'));
-
+        return view('index',compact('values') );
     }
 
 
@@ -35,12 +34,13 @@ class Persons extends Controller
         $nameValue = $request['name'];
         $ageValue = $request['age'];
         $petValue = $request['pet'];
-        $Persons::create([
+        $Persons::insert([
             "name"=>$nameValue,
             "pet"=>$petValue,
             "age"=>$ageValue
         ]);
-        $Persons->save();
+
+        $values = $Persons::all();
         return view('index',compact('values'));
     }
 
@@ -51,22 +51,24 @@ class Persons extends Controller
         $valuesDB = "$value%";
 
         $values = $Persons::whereRaw('pet like ?  or name like ?  or age like ? ',[$valuesDB,$valuesDB,$valuesDB])->get();
-        return view('index',compact('values'));
+        return view('index',compact('values') );
     }
-    public function update(Request $request,)
+    public function updateone(Request $request)
     {
         $Persons = $this->objPersons;
         $nameValue = $request['name'];
         $ageValue = $request['age'];
         $petValue = $request['pet'];
         $ids = $request['id'];
-        $Persons::all()->where('id',$ids)
+
+        $Persons::where('id',$ids)
         ->update([
             'name'=>$nameValue,
             'age'=>$ageValue,
             'pet'=>$petValue
         ]);
-        return ;
+        $values = $Persons::all();
+        return view('index',compact('values'));
     }
 
 
@@ -80,6 +82,7 @@ class Persons extends Controller
 
         return view('index',compact('values'));
     }
+
     public function destroyOne($id)
     {
         $Persons = $this->objPersons;
